@@ -1,15 +1,20 @@
+# Flutter_Game_Flix
 
-# GameFlix
+An app built using Flutter that consumes [RAWG API](https://rawg.io) to display current games, upcoming and popular video games 🎮and characters 🎃. It has been built following Clean Architecture Principle, Repository Pattern, MVVM Architecture in the presentation layer as well as Bloc pattern.
 
-An  app built using Flutter that consumes [RAWG API](https://rawg.io) to display current games, upcoming and popular video games 🎮and characters 🎃. It has been built following Clean Architecture Principle, Repository Pattern, MVVM Architecture in the presentation layer as well as Bloc pattern.
+ <br/>
 
+# Download Apk
 
-> ## Scroll Down to screenshots :)
+<p align="center">
+<a href="https://github.com/deevsaini/flutter_game_flix/releases/download/1.0.0/app-release.apk">Click to download</a>
 
+ <br/>
 
 ## Getting Started
 
-To run this project, 
+To run this project,
+
 - You need to have Flutter installed on your machine. You can find the installation guide [here](https://flutter.dev/docs/get-started/install).
 - Clone this repository
 - In order to be able to build the application you'll need to change the api key in `contants.dart`. First and formost you need to generate your own api key by [creating](https://rawg.com/Identity/Account/Manage) an RAWG account and [generating](https://rawg-api.com/api) an api key.
@@ -19,10 +24,11 @@ To run this project,
 - Run `flutter run` to run the app on your device or emulator
 
 ## Disclaimer.
+
 - Complex architectures like the pure clean architecture can also increase code complexity since decoupling your code also means creating lots of data transformations(mappers) and models, that may end up increasing the learning curve of your code to a point where it would be better to use a simpler architecture like MVVM.
 
 - Clean arcitecture has only been used in this repository to showcase my skills and it's not recommended to use clean architecture in a small scale projects such as this one
-> TAKE NOTE: This project is still under development and you may run into bugs. You may still contribute to it though. :)
+  > TAKE NOTE: This project is still under development and you may run into bugs. You may still contribute to it though. :)
 
 So let's get started ...
 
@@ -42,11 +48,12 @@ This app is built upon Clean Architecture. The architecture is divided into 3 la
 - **Domain Layer**: This layer contains the use cases and the entities.
 - **Presentation Layer**: This layer contains the UI and the BLoC.
 
-The center circle is the most abstract, and the outer circle is the most concrete. This is called the [Abstraction Principle](https://en.wikipedia.org/wiki/Abstraction_principle_(computer_programming)). The Abstraction Principle specifies that inner circles should contain business logic, and outer circles should contain implementation details.
+The center circle is the most abstract, and the outer circle is the most concrete. This is called the [Abstraction Principle](<https://en.wikipedia.org/wiki/Abstraction_principle_(computer_programming)>). The Abstraction Principle specifies that inner circles should contain business logic, and outer circles should contain implementation details.
 
 Another principle of Clean Architecture is the [Dependency Inversion](https://en.wikipedia.org/wiki/Dependency_inversion_principle). This rule specifies that each circle can depend only on the nearest inward circle ie. low-level modules do not depend on high-level modules but the other way around.
 
 ### Why Clean Architecture?
+
 - Loose coupling between the code - The code can easily be modified without affecting any or a large part of the app's codebase thus easier to scale the application later on.
 - Easier to test code.
 - Separation of Concern - Different modules have specific responsibilities making it easier for modification and maintenance.
@@ -54,37 +61,42 @@ Another principle of Clean Architecture is the [Dependency Inversion](https://en
 ## Layers.
 
 ### 1. Domain.
-This is the core layer of the application. The ```domain``` layer is independent of any other layers thus ] domain models and business logic can be independent from other layers.This means that changes in other layers will have no effect on domain layer eg.  screen UI (presentation layer) or changing database (data layer) will not result in any code change withing domain layer.
+
+This is the core layer of the application. The `domain` layer is independent of any other layers thus ] domain models and business logic can be independent from other layers.This means that changes in other layers will have no effect on domain layer eg. screen UI (presentation layer) or changing database (data layer) will not result in any code change withing domain layer.
 
 Components of domain layer include:
-- __Models__: Defines the core structure of the data that will be used within the application.
 
-- __Repositories__: Interfaces used by the use cases. Implemented in the data layer.
+- **Models**: Defines the core structure of the data that will be used within the application.
 
-- __Use cases/Interactors__: They enclose a single action, like getting data from a database or posting to a service. They use the repositories to resolve the action they are supposed to do. They usually override the operator “invoke”, so they can be called as a function.
+- **Repositories**: Interfaces used by the use cases. Implemented in the data layer.
+
+- **Use cases/Interactors**: They enclose a single action, like getting data from a database or posting to a service. They use the repositories to resolve the action they are supposed to do. They usually override the operator “invoke”, so they can be called as a function.
 
 ### 2. Data.
-The ```data``` layer is responsibile for selecting the proper data source for the domain layer. It contains the implementations of the repositories declared in the domain layer. 
+
+The `data` layer is responsibile for selecting the proper data source for the domain layer. It contains the implementations of the repositories declared in the domain layer.
 
 Components of data layer include:
-- __Models__
 
-    -__Dto Models__: Defines POJO of network responses.
+- **Models**
 
-    -__Entity Models__: Defines the schema of SQLite database.
+  -**Dto Models**: Defines POJO of network responses.
 
-- __Repositories__: Responsible for exposing data to the domain layer.
+  -**Entity Models**: Defines the schema of SQLite database.
 
-- __Mappers__: They perform data transformation between ```domain```, ```dto``` and ```entity``` models.
+- **Repositories**: Responsible for exposing data to the domain layer.
 
-- __Network__: This is responsible for performing network operations eg. defining API endpoints using [Retrofit](https://square.github.io/retrofit/).
+- **Mappers**: They perform data transformation between `domain`, `dto` and `entity` models.
 
-- __Cache__: This is responsible for performing caching operations using [Room](https://developer.android.com/training/data-storage/room).
+- **Network**: This is responsible for performing network operations eg. defining API endpoints using [Retrofit](https://square.github.io/retrofit/).
 
-- __Data Source__:  Responsible for deciding which data source (network or cache) will be used when fetching data.
+- **Cache**: This is responsible for performing caching operations using [Room](https://developer.android.com/training/data-storage/room).
+
+- **Data Source**: Responsible for deciding which data source (network or cache) will be used when fetching data.
 
 ### 3. Presentation.
-The ```presentation``` layer contains components involved in showing information to the user. This layer contains the UI and the BLoC.
+
+The `presentation` layer contains components involved in showing information to the user. This layer contains the UI and the BLoC.
 
 ## Testing
 
@@ -113,7 +125,6 @@ This app is built using TDD. The tests are divided into 3 layers:
 - [shared_preferences](https://pub.dev/packages/shared_preferences) : Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
 - [flutter_spinkit](https://pub.dev/packages/flutter_spinkit) : A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
-
 ## Screenshots
 
 <center>
@@ -141,11 +152,12 @@ This app is built using TDD. The tests are divided into 3 layers:
   </table>
 </center>
 
-
-
 ## Resources
 
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [TDD](https://www.youtube.com/watch?v=KtHQGs3mSfM)
 
 You found a bug? Please file an issue
+
+  <br/>
+  <p align = "center">Show Some Love, &#11088; the Repositories! </p>
