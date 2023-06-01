@@ -1,5 +1,3 @@
-<p align="center"><img src="assets/images/GameFlix.png" alt="GameFlix" height="150px"></p>
-
 
 # GameFlix
 
